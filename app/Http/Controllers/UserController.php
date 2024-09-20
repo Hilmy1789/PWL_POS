@@ -77,20 +77,40 @@ class UserController extends Controller
         // $user->isClean(); // true
         // dd($user->isDirty());
 
-         $user = UserModel::create([
-            'username' => 'manager11',
-            'name' => 'Manager11',
-            'password' => Hash::make('12345'),
-            'level_id' => 2,
+        //  $user = UserModel::create([
+        //     'username' => 'manager11',
+        //     'name' => 'Manager11',
+        //     'password' => Hash::make('12345'),
+        //     'level_id' => 2,
+        // ]);
+        // $user->username = 'manager12';
+
+        // $user->save();
+
+        // $user->wasChanged(); // true
+        // $user->wasChanged('username'); // true
+        // $user->wasChanged(['username', 'level_id']); // true
+        // $user->wasChanged('name'); //false
+        // dd($user->wasChanged(['name', 'username'])); //true
+
+        $user = UserModel::all();
+        return view('user', ['data' => $user]);
+    }
+
+    public function tambah()
+    {
+        return view('user_tambah');
+    }
+
+    public function tambah_simpan(Request $request)
+    {
+        UserModel::create([
+            'username' => $request->username,
+            'nama' => $request->nama,
+            'password' => Hash::make('$request->password'),
+            'level_id' => $request->level_id
         ]);
-        $user->username = 'manager12';
 
-        $user->save();
-
-        $user->wasChanged(); // true
-        $user->wasChanged('username'); // true
-        $user->wasChanged(['username', 'level_id']); // true
-        $user->wasChanged('name'); //false
-        dd($user->wasChanged(['name', 'username'])); //true
+        return redirect('/user');
     }
 }
