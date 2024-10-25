@@ -19,6 +19,12 @@
                     <p>Dashboard</p>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="{{ url('/profile') }}" class="nav-link {{ $activeMenu == 'profile' ? 'active' : '' }} ">
+                    <i class="nav-icon far fa-address-card"></i>
+                    <p>Profile</p>
+                </a>
+            </li>
             <li class="nav-header">Data Pengguna</li>
             <li class="nav-item">
                 <a href="{{ url('/level') }}" class="nav-link {{ $activeMenu == 'level' ? 'active' : '' }}">
@@ -59,18 +65,23 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ url('/barang') }}" class="nav-link {{ $activeMenu == 'penjualan' ? 'active' : '' }}">
+                <a href="{{ url('/penjualan') }}" class="nav-link {{ $activeMenu == 'penjualan' ? 'active' : '' }}">
                     <i class="nav-icon fas fa-cash-register"></i>
                     <p>Transaksi Penjualan</p>
                 </a>
             </li>
-        </li>
-        <li class="nav-item">
-            <a href="{{ url('/logout') }}" class="nav-link {{ $activeMenu == 'Keluar' ? 'active' : '' }}">
-                <i class="nav-icon far fa-user"></i>
-                <p>LOGOUT</p>
-            </a>
-        </li>
+
+            <!-- Menambahkan Menu Logout -->
+            <li class="nav-header">Keluar</li>
+            <li class="nav-item">
+                <a href="{{ url('logout') }}" class="nav-link"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <i class="nav-icon fas fa-sign-out-alt"></i>
+                    <p>Logout</p>
+                </a>
+                <form id="logout-form" action="{{ url('logout') }}" method="GET" style="display: none;">
+                </form>
+            </li>
         </ul>
     </nav>
 </div>

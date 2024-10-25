@@ -7,7 +7,8 @@
                 <button onclick="modalAction('{{ url('/barang/import') }}')" class="btn btn-info">Import Barang</button>
                 <a href="{{ url('/barang/export_excel') }}" class="btn btn-primary"><i class="fa fa-file-excel"></i> Export Barang</a>
                 <a href="{{ url('/barang/export_pdf') }}" class="btn btn-warning"><i class="fa fa-file-pdf"></i> Export Barang</a>
-                <button onclick="modalAction('{{ url('/barang/create_ajax') }}')" class="btn btn-success">Tambah Data(Ajax)</button>
+                <button onclick="modalAction('{{ url('/barang/create_ajax') }}')" class="btn btn-success">Tambah Data
+                    (Ajax)</button>
             </div>
         </div>
         <div class="card-body">
@@ -16,9 +17,9 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group form-group-sm row text-sm mb-0">
-                            <label for="filter_date" class="col-md-1 col-form-label">Filter</label>
+                            <label for="filter_date" class="col-md-1 col-formlabel">Filter</label>
                             <div class="col-md-3">
-                                <select name="filter_kategori" class="form-control form-control-sm filter_kategori">
+                                <select name="filter_kategori" class="form-control formcontrol-sm filter_kategori">
                                     <option value="">- Semua -</option>
                                     @foreach ($kategori as $l)
                                         <option value="{{ $l->kategori_id }}">{{ $l->kategori_nama }}</option>
@@ -36,7 +37,7 @@
             @if (session('error'))
                 <div class="alert alert-danger">{{ session('error') }}</div>
             @endif
-            <table class="table table-bordered table-sm table-striped table-hover" id="table-barang">
+            <table class="table table-bordered table-sm table-striped table-hover" id="table_barang">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -53,7 +54,8 @@
             </table>
         </div>
     </div>
-    <div id="myModal" class="modal fade animate shake" tabindex="-1" data-backdrop="static" data-keyboard="false"data-width="75%"></div>
+    <div id="myModal" class="modal fade animate shake" tabindex="-1" data-backdrop="static" data-keyboard="false"
+        data-width="75%"></div>
 @endsection
 @push('js')
     <script>
@@ -62,9 +64,9 @@
                 $('#myModal').modal('show');
             });
         }
-        var dataBarang;
+        var tableBarang;
         $(document).ready(function() {
-            dataBarang = $('#table-barang').DataTable({
+            tableBarang = $('#table_barang').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: {
@@ -125,13 +127,13 @@
                     searchable: false
                 }]
             });
-            $('#table-barang_filter input').unbind().bind().on('keyup', function(e) {
+            $('#table_barang_filter input').unbind().bind().on('keyup', function(e) {
                 if (e.keyCode == 13) { // enter key
-                    dataBarang.search(this.value).draw();
+                    tableBarang.search(this.value).draw();
                 }
             });
             $('.filter_kategori').change(function() {
-                dataBarang.draw();
+                tableBarang.draw();
             });
         });
     </script>

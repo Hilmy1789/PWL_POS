@@ -16,7 +16,7 @@
                 </div>
                 <div class="form-group">
                     <label>Pilih File</label>
-                    <input type="file" name="file_barang" id="file_barang" class="form-control">
+                    <input type="file" name="file_barang" id="file_barang" class="form-control" required>
                     <small id="error-file_barang" class="error-text form-text text-danger"></small>
                 </div>
             </div>
