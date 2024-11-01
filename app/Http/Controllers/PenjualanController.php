@@ -283,8 +283,8 @@ class PenjualanController extends Controller
 
     public function export_pdf()
     {
-        $penjualan = PenjualanModel::select('penjualan_id', 'user_id', 'pembeli', 'penjualan_kode', 'penjualan_tanggal')
-            ->orderBy('penjualan_id')
+        $penjualan = PenjualanModel::select('user_id', 'pembeli', 'penjualan_kode', 'penjualan_tanggal')
+            ->orderBy('user_id')
             ->with('user')
             ->get();
         $pdf = Pdf::loadView('penjualan.export_pdf', ['penjualan' => $penjualan]);
