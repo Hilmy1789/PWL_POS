@@ -1,11 +1,10 @@
 <?php
 
-use App\Http\Controllers\Api\LevelController;
-use App\Http\Controllers\Api\UserController;
-use App\Http\Controllers\Api\KategoriController;
 use App\Http\Controllers\Api\BarangController;
-use App\Http\Controllers\Api\SupplierController;
-use App\Http\Controllers\Api\StokController;
+use App\Http\Controllers\Api\KategoriController;
+use App\Http\Controllers\Api\LevelController;
+use App\Http\Controllers\Api\PenjualanController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,11 +20,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/register', App\Http\Controllers\Api\RegisterController::class)->name('register');
+Route::post('/register1', App\Http\Controllers\Api\RegisterController::class)->name('register1');
 Route::post('/login', App\Http\Controllers\Api\LoginController::class)->name('login');
-Route::middleware('auth:api')->get('/user', function (Request $request){
+Route::post('/logout', App\Http\Controllers\Api\LogoutController::class)->name('logout');
+Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('/logout', App\Http\Controllers\Api\LogoutController::class)->name('logout');
 
 Route::get('levels', [LevelController::class, 'index']);
 Route::post('levels', [LevelController::class, 'store']);
@@ -51,14 +51,8 @@ Route::get('barang/{barang}', [BarangController::class, 'show']);
 Route::put('barang/{barang}', [BarangController::class, 'update']);
 Route::delete('barang/{barang}', [BarangController::class, 'destroy']);
 
-Route::get('supplier', [SupplierController::class, 'index']);
-Route::post('supplier', [SupplierController::class, 'store']);
-Route::get('supplier/{supplier}', [SupplierController::class, 'show']);
-Route::put('supplier/{supplier}', [SupplierController::class, 'update']);
-Route::delete('supplier/{supplier}', [SupplierController::class, 'destroy']);
-
-Route::get('stok', [StokController::class, 'index']);
-Route::post('stok', [StokController::class, 'store']);
-Route::get('stok/{stok}', [StokController::class, 'show']);
-Route::put('stok/{stok}', [StokController::class, 'update']);
-Route::delete('stok/{stok}', [StokController::class, 'destroy']);
+Route::get('penjualan', [PenjualanController::class, 'index']);
+Route::post('penjualan', [PenjualanController::class, 'store']);
+Route::get('penjualan/{penjualan}', [PenjualanController::class, 'show']);
+Route::put('penjualan/{penjualan}', [PenjualanController::class, 'update']);
+Route::delete('penjualan/{penjualan}', [PenjualanController::class, 'destroy']);
